@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cra5yyb7txh58"]
+
+[ext_resource type="PackedScene" uid="uid://bh43dvr0kfdcw" path="res://scene/player.tscn" id="1_pjass"]
+
+[node name="world" type="Node2D"]
+y_sort_enabled = true
+
+[node name="player" parent="." instance=ExtResource("1_pjass")]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="player"]
