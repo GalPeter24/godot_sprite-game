@@ -1,9 +1,8 @@
 using Godot;
 
-
 public partial class Player : CharacterBody2D
 {
-	[Export]private float MoveSpeed = 200f;
+	[Export] private float MoveSpeed = 200f;
 
 	private AnimatedSprite2D animatedsprite;
 
@@ -37,44 +36,16 @@ public partial class Player : CharacterBody2D
 
 	private void GetInput()
 	{
-		Vector2 inputDirection = Vector2.Zero;
-		//jobbra
-		if (Input.IsActionPressed("ui_right"))
-		{
-			inputDirection.X += 1;
-		}
-		//balra
-		if (Input.IsActionPressed("ui_left"))
-		{
-			inputDirection.X -= 1;
-		}
-	   
-		//fel
-		if (Input.IsActionPressed("ui_up"))
-		{
-			inputDirection.Y -= 1;
-		}
-	   
+		Vector2 inputDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
-		//le
-		if (Input.IsActionPressed("ui_down"))
-		{
-			inputDirection.Y += 1;
-		}
-
-		inputDirection = inputDirection.Normalized();
-		
 		Velocity = inputDirection * MoveSpeed;
 
 		HandleAnimation(inputDirection);
 	}
-
-
 
 	public override void _PhysicsProcess(double delta)
 	{
 		GetInput();
 		MoveAndSlide();
 	}
-
 }
